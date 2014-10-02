@@ -180,6 +180,14 @@ Provide more verbose output.
 .B -V --version
 Show the version of pigz.
 .TP
+.B -X --index file
+During compression, create an index that can be used for parallel
+decompression.  During decompression, use the specified index file for parallel
+decompression.  Each occurrence of %f and %z are replaced by the uncompressed
+and compressed file names, respectively.  If the index file is the same file as
+the compressed file, the index is written to or read from the end of the
+compressed file.
+.TP
 .B -z --zlib
 Compress to zlib (.zz) instead of gzip format.
 .TP

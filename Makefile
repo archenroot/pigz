@@ -44,6 +44,15 @@ test: pigz
 	  compress -f < pigz.c | ./unpigz | cmp - pigz.c ;\
 	fi
 	@rm -f pigz.c.gz pigz.c.zz pigz.c.zip
+	@rm -rf d/1 d/2
+	(mkdir -p d/1; cd d/1; tar xzf ../../../../pigz-2.2.5.tar.gz; \
+	  cd ..; cp -pr 1 2; ../pigz -rp 4 --index %z 1; \
+	  ../pigz -drp 4 --index %z 1; diff -r 1 2)
+	@rm -rf d/1 d/2
+	(mkdir -p d/1; cd d/1; tar xzf ../../../../pigz-2.2.5.tar.gz; \
+	  cd ..; cp -pr 1 2; ../pigz -zrp 4 -X %f.idx 1; \
+	  ../pigz -dzrp 4 -X %f.idx 1; diff -r 1 2)
+	@rm -rf d/1 d/2
 
 tests: dev test
 	./pigzn -kf pigz.c ; ./pigz -t pigz.c.gz
