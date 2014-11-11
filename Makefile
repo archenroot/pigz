@@ -2,7 +2,7 @@ CC=cc
 CFLAGS=-O3 -Wall -Wextra
 
 pigz: pigz.o yarn.o
-	$(CC) -o pigz pigz.o yarn.o -lpthread -lz
+	$(CC) $(LDFLAGS) -o pigz pigz.o yarn.o -lpthread -lz
 	ln -f pigz unpigz
 
 pigz.o: pigz.c yarn.h
