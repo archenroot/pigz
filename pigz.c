@@ -4011,17 +4011,16 @@ local void process(char *path)
         fprintf(stderr, "%s to %s ", in, out);
 
     if (decode) {
-        if (method == 8) {
+        if (method == 8)
             best_infchk();
-        }
         else if (method == 256)
             unlzw();
         else
             cat();
     }
 #ifndef NOTHREAD
-    else if (procs > 1) {
-        if (index != NULL && idx_open(index) != 0)
+    else if (index != NULL) {
+        if (idx_open(index) != 0)
             bail("invalid index file", "");
         parallel_compress();
     }
