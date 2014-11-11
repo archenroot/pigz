@@ -4331,8 +4331,8 @@ local void process(char *path)
             cat();
     }
 #ifndef NOTHREAD
-    else if (g.procs > 1) {
-        if (g.indexf != NULL && idx_open(g.indexf) != 0)
+    else if (g.indexf != NULL) {
+        if (idx_open(g.indexf) != 0)
             bail("invalid index file", "");
         parallel_compress();
     }
