@@ -3698,9 +3698,9 @@ local void uncompress_thread(void *dummy)
         *prior = job;
         twist(write_first, TO, write_head->seq);
     }
-    /* found job with seq == -1 -- free deflate memory and return to join */
+    /* found job with seq == -1 -- free inflate memory and return to join */
     release(compress_have);
-    (void)deflateEnd(&strm);
+    (void)inflateEnd(&strm);
 }
 
 local void parallel_infchk(void)
