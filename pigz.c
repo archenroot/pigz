@@ -4024,6 +4024,9 @@ local void process(char *path)
             bail("invalid index file", "");
         parallel_compress();
     }
+    else if (procs > 1) {
+        parallel_compress();
+    }
 #endif
     else
         single_compress(0);
